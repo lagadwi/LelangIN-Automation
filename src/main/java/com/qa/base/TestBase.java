@@ -42,17 +42,23 @@ public class TestBase {
         String browserName = prop.getProperty("browser");
         String operatingSystem = prop.getProperty("OperatingSystem");
         if (operatingSystem.equals("windows")){
-//            if(browserName.equals("chrome")){
+            if(browserName.equals("chrome")){
                 System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
                 driver = new ChromeDriver();
-//            }
-//            else if(browserName.equals("FF")){
-//                System.setProperty("webdriver.gecko.driver", "/Users/naveenkhunteta/Documents/SeleniumServer/geckodriver");
-//                driver = new FirefoxDriver();
-//            }
+            }
+            else if(browserName.equals("FF")){
+                System.setProperty("webdriver.gecko.driver", "geckodriver.exe");
+                driver = new FirefoxDriver();
+            }
         } else {
-            System.setProperty("webdriver.chrome.driver", "chromedriverlinux");
-            driver = new ChromeDriver();
+            if(browserName.equals("chrome")){
+                System.setProperty("webdriver.chrome.driver", "chromedriverlinux");
+                driver = new ChromeDriver();
+            }
+            else if(browserName.equals("FF")){
+                System.setProperty("webdriver.gecko.driver", "geckodriver");
+                driver = new FirefoxDriver();
+            }
         }
 
 
