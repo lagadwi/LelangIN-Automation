@@ -14,6 +14,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 
 
@@ -40,6 +41,8 @@ public class TestBase {
 
     public static void initialization(){
         String browserName = prop.getProperty("browser");
+        ChromeOptions options = new ChromeOptions();
+        options.setBinary("/path/to/other/chrome/binary");
         String operatingSystem = prop.getProperty("OperatingSystem");
         if (operatingSystem.equals("windows")){
             if(browserName.equals("chrome")){
@@ -53,7 +56,8 @@ public class TestBase {
         } else {
             if(browserName.equals("chrome")){
                 System.setProperty("webdriver.chrome.driver", "chromedriverlinux");
-                driver = new ChromeDriver();
+                driver = new ChromeDriver(options);
+
             }
             else if(browserName.equals("FF")){
                 System.setProperty("webdriver.gecko.driver", "geckodriver");
@@ -68,6 +72,7 @@ public class TestBase {
         eventListener = new WebEventListener();
         e_driver.register(eventListener);
         driver = e_driver;
+
 
         driver.manage().window().maximize();
         driver.manage().deleteAllCookies();
