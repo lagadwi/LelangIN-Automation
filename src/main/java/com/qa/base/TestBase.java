@@ -42,7 +42,8 @@ public class TestBase {
     public static void initialization(){
         String browserName = prop.getProperty("browser");
         ChromeOptions options = new ChromeOptions();
-        options.setBinary("/path/to/other/chrome/binary");
+        options.setBinary("/usr/bin/google-chorme");
+
         String operatingSystem = prop.getProperty("OperatingSystem");
         if (operatingSystem.equals("windows")){
             if(browserName.equals("chrome")){
